@@ -44,9 +44,3 @@ Each contribution generates a new unique link, allowing the lineage's path to be
     *(The server should log that it's running on port 3000 and connected to the database)*
 
 6.  **Access the App:** Open your web browser and go to `http://localhost:3000`.
-
-## Development Notes
-
-*   See `dev-plan.md` for the development phases.
-*   See `ux-improvement-plan.md` for planned UI/UX enhancements.
-*   The project uses basic styling; feel free to enhance `public/style.css`. 
