@@ -1,9 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const formContainer = document.getElementById('start-form-container');
+    const showFormButton = document.getElementById('show-start-form-button');
     const form = document.getElementById('new-lineage-form');
     const statusElement = document.getElementById('new-lineage-status');
-    const submitButton = form.querySelector('button[type="submit"]');
+    
+    // Ensure submit button is queried only if form exists (to avoid errors if form isn't found initially)
+    let submitButton = null; 
+    if(form) {
+        submitButton = form.querySelector('button[type="submit"]');
+    }
 
-    if (form) {
+    // --- Logic to Show the Form ---
+    if (showFormButton && formContainer) {
+        showFormButton.addEventListener('click', () => {
+            formContainer.style.display = 'block'; // Show the form container
+            showFormButton.style.display = 'none'; // Optionally hide the button after click
+        });
+    }
+
+    // --- Existing Form Submission Logic ---
+    if (form && submitButton) { // Check if form and button exist
         form.addEventListener('submit', async (event) => {
             event.preventDefault(); // Prevent default browser form submission
             statusElement.textContent = 'Submitting...';

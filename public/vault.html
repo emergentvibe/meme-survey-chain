@@ -11,15 +11,10 @@
         <h1>Memetic Vault Lineage</h1>
         <p id="vault-loading-status" class="status-message">Loading vault...</p>
 
-        <div id="lineage-display">
-            <!-- Contributions will be dynamically loaded here -->
-        </div>
-
         <hr>
 
         <h2>Add Your Contribution</h2>
         <p>Upload your image and thoughts to continue this lineage.</p>
-
         <form id="contribution-form" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="image">Upload Your Image:</label>
@@ -36,12 +31,16 @@
                 <p>Loading questions...</p>
             </div>
 
-            <!-- Add hidden input for parent share token if needed, or manage in JS -->
-            <!-- <input type="hidden" name="parent_share_token" id="parent_share_token"> -->
-
             <button type="submit">Add Contribution</button>
             <p id="contribution-status" class="status-message"></p>
         </form>
+
+        <hr style="margin-top: 40px;">
+
+        <h2>Lineage History</h2>
+        <div id="lineage-display">
+            <!-- Contributions will be dynamically loaded here -->
+        </div>
 
     </div>
 

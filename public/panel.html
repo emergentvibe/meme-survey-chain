@@ -29,6 +29,26 @@
             margin-left: 10px;
             display: inline-block; /* Keep it next to the link */
         }
+        #share-link-input {
+            width: calc(100% - 110px); /* Adjust width to fit button */
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #eee;
+            margin-right: 10px; /* Space before button */
+            /* Optionally add font styles */
+        }
+        #copy-button {
+            padding: 10px 15px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            vertical-align: middle; /* Align with input */
+        }
+        #copy-button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -46,11 +66,12 @@
         <div id="share-link-section">
             <h2>Share this Vault!</h2>
             <p>Copy the link below and send it to the next person you want to invite to contribute:</p>
-            <div id="share-link-display" title="Click to copy link">
-                <!-- Share link will be populated here -->
-                Loading link...
+            <div style="display: flex; align-items: center;"> <!-- Use flexbox for alignment -->
+                <input type="text" id="share-link-input" readonly value="Loading link...">
+                <button id="copy-button">Copy Link</button>
+                <span id="copy-status" style="margin-left: 10px;"></span> <!-- Adjusted margin -->
             </div>
-            <span id="copy-status"></span>
+            <!-- <span id="copy-status"></span> --> <!-- Remove old span -->
         </div>
 
     </div>

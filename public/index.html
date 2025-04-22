@@ -21,56 +21,64 @@
 
         <hr>
 
-        <h2>Option 1: Start a New Lineage</h2>
-        <p>Upload the first image to create a new vault and get a share link to send to your friends.</p>
+        <div class="options-container">
+            <div class="option-section">
+                <h2>Option 1: Start a New Lineage</h2>
+                <p>Click the button below to create a new vault by uploading the first image and setting the survey questions.</p>
+                <button id="show-start-form-button" class="button-primary">Start a New Vault Lineage</button>
 
-        <form id="new-lineage-form" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="image">Upload Your First Image:</label>
-                <input type="file" id="image" name="image" accept="image/*" required>
-            </div>
-            <div class="form-group">
-                <label for="description">Image Description (Optional):</label>
-                <textarea id="description" name="description" rows="3"></textarea>
+                <div id="start-form-container" style="display: none; margin-top: 20px; padding: 15px; border: 1px solid #eee; background-color: #fdfdfd;">
+                    <form id="new-lineage-form" enctype="multipart/form-data">
+                        <h4>New Vault Details:</h4>
+                        <div class="form-group">
+                            <label for="image">Upload Your First Image:</label>
+                            <input type="file" id="image" name="image" accept="image/*" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Image Description (Optional):</label>
+                            <textarea id="description" name="description" rows="3"></textarea>
+                        </div>
+
+                        <h5>Set Survey Questions & Your Answers:</h5>
+                        <div class="form-group">
+                            <label for="surveyQuestion1">Question 1:</label>
+                            <input type="text" id="surveyQuestion1" name="surveyQuestion1" placeholder="Enter your first question" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="surveyAnswer1">Your Answer to Q1:</label>
+                            <input type="text" id="surveyAnswer1" name="surveyAnswer1">
+                        </div>
+                        <div class="form-group">
+                            <label for="surveyQuestion2">Question 2:</label>
+                            <input type="text" id="surveyQuestion2" name="surveyQuestion2" placeholder="Enter your second question" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="surveyAnswer2">Your Answer to Q2:</label>
+                            <input type="text" id="surveyAnswer2" name="surveyAnswer2">
+                        </div>
+                        <div class="form-group">
+                            <label for="surveyQuestion3">Question 3:</label>
+                            <input type="text" id="surveyQuestion3" name="surveyQuestion3" placeholder="Enter your third question" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="surveyAnswer3">Your Answer to Q3:</label>
+                            <input type="text" id="surveyAnswer3" name="surveyAnswer3">
+                        </div>
+
+                        <button type="submit">Create & View Vault Panel</button>
+                        <p id="new-lineage-status" class="status-message"></p>
+                    </form>
+                </div>
             </div>
 
-            <h3>Quick Survey (Set Questions & Answer Them)</h3>
-            <div class="form-group">
-                <label for="surveyQuestion1">Question 1:</label>
-                <input type="text" id="surveyQuestion1" name="surveyQuestion1" placeholder="Enter your first question" required>
+            <div class="option-section" style="margin-top: 30px;">
+                <h2>Option 2: Add to an Existing Lineage</h2>
+                <p>If someone shared a Memetic Vault link with you (e.g., <code>.../vault/some_unique_code</code>), simply click or paste that link into your browser to view the vault and add your contribution.</p>
             </div>
-             <div class="form-group">
-                <label for="surveyAnswer1">Your Answer to Q1:</label>
-                <input type="text" id="surveyAnswer1" name="surveyAnswer1">
-            </div>
-             <div class="form-group">
-                <label for="surveyQuestion2">Question 2:</label>
-                <input type="text" id="surveyQuestion2" name="surveyQuestion2" placeholder="Enter your second question" required>
-            </div>
-             <div class="form-group">
-                <label for="surveyAnswer2">Your Answer to Q2:</label>
-                <input type="text" id="surveyAnswer2" name="surveyAnswer2">
-            </div>
-             <div class="form-group">
-                <label for="surveyQuestion3">Question 3:</label>
-                <input type="text" id="surveyQuestion3" name="surveyQuestion3" placeholder="Enter your third question" required>
-            </div>
-            <div class="form-group">
-                <label for="surveyAnswer3">Your Answer to Q3:</label>
-                <input type="text" id="surveyAnswer3" name="surveyAnswer3">
-            </div>
-
-            <button type="submit">Start New Vault</button>
-            <p id="new-lineage-status" class="status-message"></p>
-        </form>
-
-        <hr>
-
-        <h2>Option 2: Add to an Existing Lineage</h2>
-        <p>If someone shared a Memetic Vault link with you (e.g., `.../vault/some_unique_code`), click or paste that link into your browser to view the vault and add your contribution.</p>
+        </div>
 
     </div>
 
-    <script src="landing.js"></script>
+    <script src="/landing.js"></script>
 </body>
 </html> 

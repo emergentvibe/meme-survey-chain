@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const lineageDisplay = document.getElementById('lineage-display');
     const loadingStatus = document.getElementById('panel-loading-status');
-    const shareLinkDisplay = document.getElementById('share-link-display');
+    const shareLinkInput = document.getElementById('share-link-input');
+    const copyButton = document.getElementById('copy-button');
     const copyStatus = document.getElementById('copy-status');
     // Optionally display root questions on panel page too
     const rootQuestionsDisplay = document.createElement('div');
@@ -10,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lineageDisplay.parentNode.insertBefore(rootQuestionsDisplay, lineageDisplay);
 
     let currentShareToken = null;
+    let nextShareLink = '';
 
     // Function to display root questions
     const renderRootQuestions = (questions) => {
@@ -34,14 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!currentShareToken) {
             loadingStatus.textContent = 'Error: Invalid panel link.';
             loadingStatus.classList.add('error');
-            shareLinkDisplay.textContent = 'Cannot generate share link.';
+            shareLinkInput.value = 'Error generating link.';
+            copyButton.disabled = true;
             return;
         }
 
-        // Construct the share link using the *current* token (which represents the state just contributed)
-        const nextShareLink = `${window.location.origin}/vault/${currentShareToken}`;
-        shareLinkDisplay.textContent = nextShareLink;
-        shareLinkDisplay.onclick = () => copyToClipboard(nextShareLink);
+        // Construct the share link
+        nextShareLink = `${window.location.origin}/vault/${currentShareToken}`;
+        shareLinkInput.value = nextShareLink;
 
         try {
             // Fetch the lineage using the same API endpoint as the vault page
@@ -93,16 +95,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 2. Copy to Clipboard Functionality ---
     const copyToClipboard = (text) => {
+        if (!text) return;
         navigator.clipboard.writeText(text).then(() => {
             copyStatus.textContent = 'Copied!';
-            // Briefly show the status, then fade or clear
-            setTimeout(() => { copyStatus.textContent = ''; }, 2000);
+            copyButton.textContent = 'Copied!';
+            copyButton.disabled = true;
+            setTimeout(() => {
+                copyStatus.textContent = '';
+                copyButton.textContent = 'Copy Link';
+                copyButton.disabled = false;
+            }, 2500);
         }).catch(err => {
             console.error('Failed to copy link: ', err);
-            copyStatus.textContent = 'Copy failed';
-            setTimeout(() => { copyStatus.textContent = ''; }, 2000);
+            copyStatus.textContent = 'Auto-copy failed. Please copy manually.';
+            shareLinkInput.select();
+            shareLinkInput.setSelectionRange(0, 99999);
+            setTimeout(() => { copyStatus.textContent = ''; }, 3000);
         });
     };
+
+    // Add event listener to the new copy button
+    if(copyButton) {
+        copyButton.addEventListener('click', () => copyToClipboard(nextShareLink));
+    }
+
+    // Also allow clicking the input field to copy (optional, good UX)
+    if(shareLinkInput) {
+        shareLinkInput.addEventListener('click', () => copyToClipboard(nextShareLink));
+    }
 
     // --- Initial Load ---
     loadLineageAndLink();
