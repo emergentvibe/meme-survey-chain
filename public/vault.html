@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memetic Vault - View & Contribute</title>
+    <link rel="stylesheet" href="/style.css"> <!-- Use absolute path for CSS -->
+</head>
+<body>
+    <div class="container">
+        <h1>Memetic Vault Lineage</h1>
+        <p id="vault-loading-status" class="status-message">Loading vault...</p>
+
+        <div id="lineage-display">
+            <!-- Contributions will be dynamically loaded here -->
+        </div>
+
+        <hr>
+
+        <h2>Add Your Contribution</h2>
+        <p>Upload your image and thoughts to continue this lineage.</p>
+
+        <form id="contribution-form" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="image">Upload Your Image:</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Image Description (Optional):</label>
+                <textarea id="description" name="description" rows="3"></textarea>
+            </div>
+
+            <h3>Quick Survey (Answer the Original Questions)</h3>
+            <div id="survey-questions-display">
+                <!-- Questions will be loaded here by vault.js -->
+                <p>Loading questions...</p>
+            </div>
+
+            <!-- Add hidden input for parent share token if needed, or manage in JS -->
+            <!-- <input type="hidden" name="parent_share_token" id="parent_share_token"> -->
+
+            <button type="submit">Add Contribution</button>
+            <p id="contribution-status" class="status-message"></p>
+        </form>
+
+    </div>
+
+    <script src="/vault.js"></script> <!-- Use absolute path for JS -->
+</body>
+</html> 

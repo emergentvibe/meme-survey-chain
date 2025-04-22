@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memetic Vault - Share Panel</title>
+    <link rel="stylesheet" href="/style.css"> <!-- Use absolute path for CSS -->
+    <style>
+        /* Add specific styles for the share link section */
+        #share-link-section {
+            margin-top: 30px;
+            padding: 15px;
+            border: 1px dashed #ccc;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        #share-link-display {
+            font-weight: bold;
+            word-wrap: break-word; /* Ensure long links wrap */
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #eee;
+            border: 1px solid #ddd;
+            cursor: pointer; /* Indicate it's clickable */
+        }
+        #copy-status {
+            font-size: 0.9em;
+            color: green;
+            margin-left: 10px;
+            display: inline-block; /* Keep it next to the link */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Memetic Vault Lineage</h1>
+        <p>You have successfully contributed!</p>
+        <p id="panel-loading-status" class="status-message">Loading lineage...</p>
+
+        <div id="lineage-display">
+            <!-- Contributions will be dynamically loaded here -->
+        </div>
+
+        <hr>
+
+        <div id="share-link-section">
+            <h2>Share this Vault!</h2>
+            <p>Copy the link below and send it to the next person you want to invite to contribute:</p>
+            <div id="share-link-display" title="Click to copy link">
+                <!-- Share link will be populated here -->
+                Loading link...
+            </div>
+            <span id="copy-status"></span>
+        </div>
+
+    </div>
+
+    <script src="/panel.js"></script> <!-- Use absolute path for JS -->
+</body>
+</html> 
