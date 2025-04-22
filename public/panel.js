@@ -65,11 +65,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 result.contributions.forEach((contrib, index) => {
                     const contributionElement = document.createElement('div');
                     contributionElement.className = 'contribution-item';
-                    // Display answers in the lineage view
-                    let answersHtml = '<p><strong>Answers:</strong><ul style="margin-top: 5px;">';
-                    answersHtml += `<li>Q1: ${contrib.answers.a1 || '<em>N/A</em>'}</li>`;
-                    answersHtml += `<li>Q2: ${contrib.answers.a2 || '<em>N/A</em>'}</li>`;
-                    answersHtml += `<li>Q3: ${contrib.answers.a3 || '<em>N/A</em>'}</li>`;
+
+                    // Get root questions for context
+                    const rootQuestions = result.root_questions || {};
+
+                    // Display answers with corresponding questions
+                    let answersHtml = '<p><strong>Survey Responses:</strong><ul style="margin-top: 5px; list-style: none; padding-left: 10px;">';
+                    if (rootQuestions.q1) { // Only show if question exists
+                        answersHtml += `<li><strong>${rootQuestions.q1}</strong><br><span style="padding-left: 10px;">${contrib.answers.a1 || '<em>N/A</em>'}</span></li>`;
+                    }
+                    if (rootQuestions.q2) {
+                         answersHtml += `<li style="margin-top: 5px;"><strong>${rootQuestions.q2}</strong><br><span style="padding-left: 10px;">${contrib.answers.a2 || '<em>N/A</em>'}</span></li>`;
+                    }
+                     if (rootQuestions.q3) {
+                         answersHtml += `<li style="margin-top: 5px;"><strong>${rootQuestions.q3}</strong><br><span style="padding-left: 10px;">${contrib.answers.a3 || '<em>N/A</em>'}</span></li>`;
+                    }
+                    // Add fallback if no questions were defined but answers might exist (less likely)
+                    if (!rootQuestions.q1 && !rootQuestions.q2 && !rootQuestions.q3) {
+                        answersHtml += '<li><em>No questions defined for this lineage.</em></li>';
+                    }
                     answersHtml += '</ul></p>';
 
                     contributionElement.innerHTML = `
