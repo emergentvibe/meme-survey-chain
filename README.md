@@ -26,26 +26,24 @@ Each contribution generates a new unique link, allowing the lineage's path to be
 
 2.  **Clone/Download:** Obtain the project files.
 
-3.  **Navigate:** Open your terminal and `cd` into the project directory (`meme-survey-chain`).
-
-4.  **Install Dependencies:**
+3.  **Install Dependencies:**
     ```bash
     npm install
     ```
 
-5.  **Initialize Database:** Create the database file and table structure. If `memetic_vault.db` already exists, you might want to remove it first (`rm memetic_vault.db`) to ensure the latest schema is used.
+4.  **Initialize Database:** Create the database file and table structure. If `memetic_vault.db` already exists, you might want to remove it first (`rm memetic_vault.db`) to ensure the latest schema is used.
     ```bash
     node init_db.js
     ```
     *(Check the output for success messages)*
 
-6.  **Run the Server:**
+5.  **Run the Server:**
     ```bash
     npm start
     ```
     *(The server should log that it's running on port 3000 and connected to the database)*
 
-7.  **Access the App:** Open your web browser and go to `http://localhost:3000`.
+6.  **Access the App:** Open your web browser and go to `http://localhost:3000`.
 
 ## Development Notes
 
