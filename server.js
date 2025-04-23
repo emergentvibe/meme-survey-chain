@@ -3,12 +3,17 @@ const path = require('path');
 const crypto = require('crypto');
 const multer = require('multer');
 const { v4: uuidv4 } = require('uuid');
+const geoip = require('geoip-lite');
 // Import connectDb function instead of the raw db object initially
 const dbOps = require('./database');
 // const apiRoutes = require('./routes/api'); // Optional route structuring
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// If behind a proxy (like Heroku, etc.), trust the first proxy hop
+// IMPORTANT: Only enable this if you KNOW you are behind a trusted proxy
+// app.set('trust proxy', 1); 
 
 // --- Multer Setup for File Uploads ---
 const storage = multer.diskStorage({
@@ -54,6 +59,16 @@ app.get('/panel/:share_token', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'panel.html'));
 });
 
+// Route for the new 'start new bottle' page
+app.get('/start', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'start.html'));
+});
+
+// Route for the new map page
+app.get('/map', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'map.html'));
+});
+
 // --- API Routes ---
 // Define endpoints here or use router: app.use('/api', apiRoutes);
 
@@ -75,6 +90,35 @@ app.post('/api/contribute', upload.single('image'), async (req, res) => {
             return res.status(400).json({ success: false, error: 'Image file is required.' });
         }
         // TODO: Add more validation for description, survey answers if needed
+        
+        // --- Geolocation ---
+        // IMPORTANT: Inform users about location collection and obtain consent!
+        // This implementation just collects it technically.
+        const ip = req.ip || req.connection.remoteAddress;
+        // Handle localhost IPs (::1 or 127.0.0.1) which geoip-lite doesn't map
+        // You might want to assign a default location or skip location for local testing
+        const isLocalhost = ip === '::1' || ip === '127.0.0.1';
+        let locationData = null;
+        let latitude = null;
+        let longitude = null;
+
+        if (!isLocalhost) {
+            try {
+                locationData = geoip.lookup(ip);
+            } catch (geoError) {
+                console.warn(`[GEOLOCATION] Error looking up IP ${ip}:`, geoError.message);
+                locationData = null;
+            }
+        }
+        
+        if (locationData && locationData.ll) {
+            latitude = locationData.ll[0];
+            longitude = locationData.ll[1];
+            console.log(`[GEOLOCATION] IP: ${ip}, Location: ${latitude}, ${longitude}`);
+        } else {
+            console.log(`[GEOLOCATION] Could not determine location for IP: ${ip}`);
+            // Optionally set default coordinates or leave as null
+        }
 
         // --- Determine Parent / Lineage Root ---
         let parentContributionId = null;
@@ -116,7 +160,9 @@ app.post('/api/contribute', upload.single('image'), async (req, res) => {
             survey_answer_1: surveyAnswer1 || '',
             survey_answer_2: surveyAnswer2 || '',
             survey_answer_3: surveyAnswer3 || '',
-            contributor_user_agent: req.headers['user-agent'] || 'Unknown'
+            contributor_user_agent: req.headers['user-agent'] || 'Unknown',
+            latitude: latitude,     // <-- Add latitude
+            longitude: longitude    // <-- Add longitude
         };
 
         // --- Save to DB ---
@@ -195,7 +241,16 @@ app.get('/api/vault/:share_token', async (req, res) => {
     }
 });
 
-// Example: app.get('/api/vault/:share_token', /* handler */);
+// API endpoint to get latest contribution locations for map
+app.get('/api/map/latest', async (req, res) => {
+    try {
+        const leafNodes = await dbOps.getLeafContributions();
+        res.status(200).json(leafNodes);
+    } catch (error) {
+        console.error("Error fetching leaf contributions for map:", error);
+        res.status(500).json({ error: "Server error retrieving map data." });
+    }
+});
 
 // --- Basic Error Handler Middleware ---
 app.use((err, req, res, next) => {

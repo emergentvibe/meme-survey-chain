@@ -3,118 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Message in a Bottle - Start or Continue</title>
+    <title>Message in a Bottle - Cast a Memory</title>
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Message in a Bottle</h1>
+    <div class="container landing-container">
 
-        <p>Create a digital message in a bottle, fill it with a meaningful image and your thoughts, and send it out on a journey across the internet! See how far it travels and what unique stories and cultural snapshots it collects along the way.</p>
+        <header class="landing-header">
+            <div class="header-icon">🌊</div>
+            <h1>Message in a Bottle</h1>
+            <p class="tagline">Cast a memory upon the digital tides.</p>
+        </header>
 
-        <h2>How it Works: The Voyage</h2>
-        <div id="how-it-works-steps">
-            <div class="step-item">
-                <div class="step-icon-placeholder"></div>
-                <div class="step-content">
-                    <h4>Step 1: Launch Your Bottle</h4>
-                    <p>Start by choosing an image that resonates with you. Set a creative prompt for future contributors and add a few survey questions to guide the bottle's theme. Answer your own questions first!</p>
+        <section class="steps-section">
+            <h2>How Your Message Travels</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-icon">🍾</div>
+                    <div class="step-title">Launch</div>
+                    <p class="step-desc">Start with an image & prompt.</p>
+                </div>
+                <div class="step-arrow">→</div>
+                <div class="step">
+                    <div class="step-icon">🔗</div>
+                    <div class="step-title">Share</div>
+                    <p class="step-desc">Send the secret link to a friend.</p>
+                </div>
+                <div class="step-arrow">→</div>
+                <div class="step">
+                    <div class="step-icon">✨</div>
+                    <div class="step-title">Contribute</div>
+                    <p class="step-desc">They add their image & story.</p>
+                </div>
+                <div class="step-arrow">→</div>
+                <div class="step">
+                    <div class="step-icon">🗺️</div>
+                    <div class="step-title">Journey</div>
+                    <p class="step-desc">Watch the bottle travel the world.</p>
                 </div>
             </div>
-            <div class="step-item">
-                <div class="step-icon-placeholder"></div>
-                <div class="step-content">
-                    <h4>Step 2: Share the Link</h4>
-                    <p>Once created, you'll get a unique secret link – like the map coordinates for your bottle. Share this link directly with a friend you trust to continue the journey.</p>
-                </div>
-            </div>
-            <div class="step-item">
-                <div class="step-icon-placeholder"></div>
-                <div class="step-content">
-                    <h4>Step 3: Add to the Story & Pass It On</h4>
-                    <p>Your friend uses the link, sees the bottle's history (including your contribution!), adds their own image based on your prompt, and answers the survey questions. They then receive a *new* unique link to pass along to someone else.</p>
-                </div>
-            </div>
-            <div class="step-item">
-                <div class="step-icon-placeholder"></div>
-                <div class="step-content">
-                    <h4>Step 4: Watch it Drift</h4>
-                    <p>The bottle continues to travel from person to person, gathering images, answers, and moments. Each one becomes a unique time capsule, a snapshot of the connections and cultures it passes through.</p>
-                </div>
-            </div>
-             <div class="step-item">
-                 <div class="step-icon-placeholder"></div>
-                 <div class="step-content">
-                    <h4>A Digital Artifact</h4>
-                    <p>Each completed journey is a collaborative piece of art, a miniature cultural survey, and a testament to shared human experience across digital shores.</p>
-                 </div>
-            </div>
-        </div>
+        </section>
 
-        <hr>
+        <section class="explainer-section">
+            <p>
+                Create a unique digital time capsule. See how far your shared moments travel, connecting people and capturing snapshots of life across the internet's vast ocean.
+            </p>
+        </section>
 
-        <div class="options-container">
-            <div class="option-section">
-                <h2>Option 1: Start a New Bottle</h2>
-                <p>Click the button below to create a new bottle by uploading the first image and setting the survey questions.</p>
-                <button id="show-start-form-button" class="button-primary">Start a New Message in a Bottle</button>
-
-                <div id="start-form-container" style="display: none; margin-top: 20px; padding: 15px; border: 1px solid #eee; background-color: #fdfdfd;">
-                    <form id="new-lineage-form" enctype="multipart/form-data">
-                        <h4>New Bottle Details:</h4>
-                        <div class="form-group">
-                            <label for="image">Upload Your First Image:</label>
-                            <input type="file" id="image" name="image" accept="image/*" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="description">Image Description (Optional):</label>
-                            <textarea id="description" name="description" rows="3"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="imagePrompt">Image Prompt:</label>
-                            <input type="text" id="imagePrompt" name="imagePrompt" placeholder="e.g., 'A photo that makes you feel calm'" required>
-                        </div>
-
-                        <h5>Set Survey Questions & Your Answers:</h5>
-                        <div class="form-group">
-                            <label for="surveyQuestion1">Question 1:</label>
-                            <input type="text" id="surveyQuestion1" name="surveyQuestion1" placeholder="Enter your first question" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="surveyAnswer1">Your Answer to Q1:</label>
-                            <input type="text" id="surveyAnswer1" name="surveyAnswer1">
-                        </div>
-                        <div class="form-group">
-                            <label for="surveyQuestion2">Question 2:</label>
-                            <input type="text" id="surveyQuestion2" name="surveyQuestion2" placeholder="Enter your second question" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="surveyAnswer2">Your Answer to Q2:</label>
-                            <input type="text" id="surveyAnswer2" name="surveyAnswer2">
-                        </div>
-                        <div class="form-group">
-                            <label for="surveyQuestion3">Question 3:</label>
-                            <input type="text" id="surveyQuestion3" name="surveyQuestion3" placeholder="Enter your third question" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="surveyAnswer3">Your Answer to Q3:</label>
-                            <input type="text" id="surveyAnswer3" name="surveyAnswer3">
-                        </div>
-
-                        <button type="submit">Create Bottle & View Panel</button>
-                        <p id="new-lineage-status" class="status-message"></p>
-                    </form>
-                </div>
-            </div>
-
-            <div class="option-section" style="margin-top: 30px;">
-                <h2>Option 2: Add to an Existing Bottle</h2>
-                <p>If someone shared a Message in a Bottle link with you (e.g., <code>.../vault/some_unique_code</code>), simply click or paste that link into your browser to view the bottle and add your contribution.</p>
-            </div>
+        <div class="cta-container">
+            <a href="/start" class="button-primary large-button">Launch Your Bottle</a>
+            <a href="/map" class="link-secondary">View World Map</a>
         </div>
 
     </div>
 
-    <script src="/landing.js"></script>
+    <!-- No JS needed for this static page structure yet -->
 </body>
 </html> 

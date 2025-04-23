@@ -211,6 +211,184 @@ button:hover,
     color: #555; /* Slightly lighter text for description */
 }
 
+/* Styles for One-Pager Index */
+.one-pager-container {
+    text-align: center;
+    max-width: 600px; /* Narrower for focus */
+}
+
+.graphic-placeholder {
+    height: 200px; /* Adjust as needed */
+    background-color: #e0f2f7; /* Placeholder color */
+    border-radius: 8px;
+    margin: 30px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #58B09C;
+    font-style: italic;
+}
+
+.steps-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 40px 0;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100px;
+}
+
+.step-icon {
+    font-size: 2.5em; /* Adjust size as needed */
+    margin-bottom: 5px;
+}
+
+.step-title {
+    font-size: 0.9em;
+    font-weight: 500;
+    color: #333;
+}
+
+.explainer-text {
+    margin: 0 auto 30px auto;
+    max-width: 450px;
+    color: #555;
+    line-height: 1.7;
+}
+
+.cta-container {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* Space between button and link */
+}
+
+.button-primary {
+    display: inline-block; /* Allows text-decoration none */
+    text-decoration: none;
+}
+
+.link-secondary {
+    color: #58B09C;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.link-secondary:hover {
+    text-decoration: underline;
+}
+
+/* Enhanced Landing Page Styles */
+.landing-container {
+    max-width: 700px;
+    background: linear-gradient(180deg, #e0f2f7 0%, #FCF9F7 25%); /* Subtle gradient top */
+    padding-top: 40px;
+}
+
+.landing-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.landing-header .header-icon {
+    font-size: 3.5em;
+    margin-bottom: 10px;
+    line-height: 1;
+}
+
+.landing-header h1 {
+    margin-bottom: 10px;
+}
+
+.tagline {
+    font-size: 1.1em;
+    color: #555;
+    margin-top: 0;
+}
+
+.steps-section {
+    margin-bottom: 40px;
+}
+
+.steps-section h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #468c7c; /* Darker teal */
+}
+
+.steps-container {
+    display: flex;
+    justify-content: space-between; /* Space out steps */
+    align-items: flex-start; /* Align tops */
+    gap: 10px; /* Gap between steps/arrows */
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex-basis: 100px; /* Base width for each step */
+    flex-grow: 1; /* Allow growing */
+}
+
+.step-icon {
+    font-size: 2.8em; /* Slightly larger icons */
+    margin-bottom: 8px;
+    line-height: 1;
+}
+
+.step-title {
+    font-size: 1em;
+    font-weight: 700; /* Bolder title */
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.step-desc {
+    font-size: 0.85em;
+    color: #666;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.step-arrow {
+    font-size: 2em;
+    color: #58B09C;
+    margin-top: 20px; /* Align roughly with icons */
+    flex-shrink: 0;
+}
+
+.explainer-section {
+    background-color: #f8f8f8; /* Slight contrast */
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 40px;
+    text-align: center;
+    border: 1px solid #eee;
+}
+
+.explainer-section p {
+    margin: 0;
+    color: #4A4A4A;
+    line-height: 1.7;
+    font-size: 1.05em;
+}
+
+.cta-container {
+    margin-top: 20px; /* Reduced top margin */
+}
+
+.button-primary.large-button {
+    padding: 15px 30px;
+    font-size: 1.1em;
+}
+
 /* Basic Responsiveness */
 @media (max-width: 600px) {
     .container {

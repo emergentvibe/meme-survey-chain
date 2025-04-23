@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message in a Bottle - Start Your Journey</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Start a New Message in a Bottle</h1>
+        <p>Begin the journey by adding the first image, a prompt for others, and your initial thoughts.</p>
+
+        <hr>
+
+        <form id="new-bottle-form" enctype="multipart/form-data">
+            <h2>Bottle Details:</h2>
+
+            <div class="form-group">
+                <label for="image">Upload Your First Image:</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
+            </div>
+
+            <div class="form-group">
+                <label for="imagePrompt">Image Prompt for Others:</label>
+                <input type="text" id="imagePrompt" name="imagePrompt" placeholder="e.g., 'A photo that makes you feel calm'" required>
+                <small>This prompt will guide the next person's image contribution.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Your Image Description (Optional):</label>
+                <textarea id="description" name="description" rows="3" placeholder="Describe your image or add a starting thought..."></textarea>
+            </div>
+
+            <h3>Initial Survey Questions & Your Answers:</h3>
+            <p>Set the questions that will travel with the bottle.</p>
+
+            <div class="form-group">
+                <label for="surveyQuestion1">Question 1:</label>
+                <input type="text" id="surveyQuestion1" name="surveyQuestion1" placeholder="Enter your first question" required>
+            </div>
+            <div class="form-group">
+                <label for="surveyAnswer1">Your Answer to Q1:</label>
+                <input type="text" id="surveyAnswer1" name="surveyAnswer1">
+            </div>
+
+            <div class="form-group">
+                <label for="surveyQuestion2">Question 2:</label>
+                <input type="text" id="surveyQuestion2" name="surveyQuestion2" placeholder="Enter your second question" required>
+            </div>
+            <div class="form-group">
+                <label for="surveyAnswer2">Your Answer to Q2:</label>
+                <input type="text" id="surveyAnswer2" name="surveyAnswer2">
+            </div>
+
+            <div class="form-group">
+                <label for="surveyQuestion3">Question 3:</label>
+                <input type="text" id="surveyQuestion3" name="surveyQuestion3" placeholder="Enter your third question" required>
+            </div>
+            <div class="form-group">
+                <label for="surveyAnswer3">Your Answer to Q3:</label>
+                <input type="text" id="surveyAnswer3" name="surveyAnswer3">
+            </div>
+
+            <button type="submit">Launch Bottle & View Panel</button>
+            <p id="status-message" class="status-message"></p>
+        </form>
+
+    </div>
+
+    <script src="/start.js"></script>
+</body>
+</html> 

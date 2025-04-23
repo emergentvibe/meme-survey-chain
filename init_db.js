@@ -33,6 +33,8 @@ function initializeDatabase() {
           survey_answer_2 TEXT,
           survey_answer_3 TEXT,
           contributor_user_agent TEXT,
+          latitude REAL,
+          longitude REAL,
           timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
           FOREIGN KEY (parent_contribution_id) REFERENCES Contributions(id),
           FOREIGN KEY (lineage_root_id) REFERENCES Contributions(id)

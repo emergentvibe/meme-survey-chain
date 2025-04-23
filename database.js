@@ -53,8 +53,10 @@ async function addContribution(data) {
         survey_answer_1,
         survey_answer_2,
         survey_answer_3,
-        contributor_user_agent
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`; // 12 placeholders
+        contributor_user_agent,
+        latitude,
+        longitude
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`; // 14 placeholders
 
     const insertParams = [
         data.share_token,
@@ -68,8 +70,10 @@ async function addContribution(data) {
         data.survey_answer_1,
         data.survey_answer_2,
         data.survey_answer_3,
-        data.contributor_user_agent
-    ]; // 12 parameters
+        data.contributor_user_agent,
+        data.latitude,
+        data.longitude
+    ]; // 14 parameters
 
     console.log('[DB DEBUG] Attempting Step 1 INSERT with SQL:', insertSql);
     console.log('[DB DEBUG] Attempting Step 1 INSERT with PARAMS:', insertParams);
@@ -207,11 +211,44 @@ async function findContributionById(id) {
     });
 }
 
+// Function to get all leaf contributions with location data
+async function getLeafContributions() {
+    // A leaf contribution is one whose ID does not appear as a parent_contribution_id
+    // for any other contribution.
+    // We also only want those that have valid latitude and longitude.
+    const sql = `
+        SELECT 
+            c.id,
+            c.share_token, 
+            c.image_filename, 
+            c.image_description,
+            c.latitude, 
+            c.longitude
+        FROM 
+            Contributions c
+        LEFT JOIN 
+            Contributions p ON c.id = p.parent_contribution_id
+        WHERE 
+            p.id IS NULL AND c.latitude IS NOT NULL AND c.longitude IS NOT NULL;
+    `;
+    return new Promise((resolve, reject) => {
+        // Use db.all to get all matching rows
+        db.all(sql, [], (err, rows) => {
+            if (err) {
+                console.error("Error finding leaf contributions:", err.message);
+                return reject(err);
+            }
+            resolve(rows); // Resolves with an array of leaf contribution objects
+        });
+    });
+}
+
 module.exports = {
     // db, // Don't export the raw DB instance directly initially
     connectDb, // Export the connection function
     addContribution,
     findContributionByToken,
     getLineage,
-    findContributionById
+    findContributionById,
+    getLeafContributions // <-- Export the new function
 }; 
