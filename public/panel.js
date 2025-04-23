@@ -5,10 +5,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const copyButton = document.getElementById('copy-button');
     const copyStatus = document.getElementById('copy-status');
     // Optionally display root questions on panel page too
-    const rootQuestionsDisplay = document.createElement('div');
-    rootQuestionsDisplay.id = 'root-questions-display'; 
-    rootQuestionsDisplay.style.marginBottom = '20px';
-    lineageDisplay.parentNode.insertBefore(rootQuestionsDisplay, lineageDisplay);
+    const rootQuestionsDisplay = document.getElementById('root-questions-display');
+    // Add element reference for image prompt
+    const imagePromptDisplay = document.createElement('div');
+    imagePromptDisplay.id = 'image-prompt-display';
+    imagePromptDisplay.style.marginBottom = '15px';
+    imagePromptDisplay.style.padding = '10px';
+    imagePromptDisplay.style.backgroundColor = '#eef';
+    imagePromptDisplay.style.borderLeft = '4px solid #58B09C';
+    rootQuestionsDisplay.parentNode.insertBefore(imagePromptDisplay, rootQuestionsDisplay);
 
     let currentShareToken = null;
     let nextShareLink = '';
@@ -55,6 +60,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const result = await response.json();
             loadingStatus.style.display = 'none'; // Hide loading message
+
+            // Display the image prompt
+            if (imagePromptDisplay) {
+                imagePromptDisplay.innerHTML = `<strong>Image Prompt:</strong> ${result.image_prompt || '<em>No specific prompt provided.</em>'}`;
+            }
 
             // Render the root questions
             renderRootQuestions(result.root_questions);

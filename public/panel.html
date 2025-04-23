@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memetic Vault - Share Panel</title>
+    <title>Message in a Bottle - Share Panel</title>
     <link rel="stylesheet" href="/style.css"> <!-- Use absolute path for CSS -->
     <style>
         /* Add specific styles for the share link section */
@@ -53,10 +53,13 @@
 </head>
 <body>
     <div class="container">
-        <h1>Memetic Vault Lineage</h1>
-        <p>You have successfully contributed!</p>
-        <p id="panel-loading-status" class="status-message">Loading lineage...</p>
+        <h1>Message in a Bottle</h1>
+        <p>You have successfully added your message!</p>
+        <p id="panel-loading-status" class="status-message">Loading bottle history...</p>
 
+        <div id="root-questions-display" style="margin-bottom: 20px;"></div>
+
+        <h2>Bottle History</h2>
         <div id="lineage-display">
             <!-- Contributions will be dynamically loaded here -->
         </div>
@@ -64,8 +67,8 @@
         <hr>
 
         <div id="share-link-section">
-            <h2>Share this Vault!</h2>
-            <p>Copy the link below and send it to the next person you want to invite to contribute:</p>
+            <h2>Share this Bottle!</h2>
+            <p>Copy the link below and send it to the next person to continue the journey:</p>
             <div style="display: flex; align-items: center;"> <!-- Use flexbox for alignment -->
                 <input type="text" id="share-link-input" readonly value="Loading link...">
                 <button id="copy-button">Copy Link</button>

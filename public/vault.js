@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('contribution-form');
     const contributionStatus = document.getElementById('contribution-status');
     const surveyQuestionsDisplay = document.getElementById('survey-questions-display');
+    const imagePromptText = document.getElementById('prompt-text');
     const submitButton = form.querySelector('button[type="submit"]');
 
     let currentShareToken = null;
@@ -50,8 +51,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(errorResult.error || `HTTP error! status: ${response.status}`);
             }
 
-            const result = await response.json(); // Expect { root_questions: {}, contributions: [] }
+            const result = await response.json(); // Expect { image_prompt: "...", root_questions: {}, contributions: [] }
             loadingStatus.style.display = 'none'; // Hide loading message
+
+            // Display the image prompt
+            if (imagePromptText) {
+                imagePromptText.textContent = result.image_prompt || 'No specific prompt provided.';
+            }
 
             // Render the survey questions first
             renderSurvey(result.root_questions);

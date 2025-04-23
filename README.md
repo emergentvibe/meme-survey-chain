@@ -1,14 +1,14 @@
-# Meme Survey Chain
+# Message in a Bottle
 
-A simple web application built as a social experiment to track the propagation of a collaborative "memetic vault" through direct, person-to-person sharing.
+A simple web application built as a social experiment to track the propagation of a collaborative "message in a bottle" through direct, person-to-person sharing.
 
 ## Concept
 
 Users can either:
-1.  Start a new "lineage" by submitting an initial image, setting 3 survey questions, and answering them.
-2.  Receive a unique link to an existing lineage, view its history (images, descriptions, answers), and contribute their own image and answers to the original survey questions.
+1.  Start a new "bottle" (lineage) by submitting an initial image, setting 3 survey questions, and answering them.
+2.  Receive a unique link to an existing bottle, view its journey (images, descriptions, answers), and contribute their own image and answers to the original survey questions.
 
-Each contribution generates a new unique link, allowing the lineage's path to be traced as it's passed along.
+Each contribution generates a new unique link, allowing the bottle's path to be traced as it's passed along.
 
 ## Tech Stack (MVP)
 
@@ -44,3 +44,8 @@ Each contribution generates a new unique link, allowing the lineage's path to be
     *(The server should log that it's running on port 3000 and connected to the database)*
 
 6.  **Access the App:** Open your web browser and go to `http://localhost:3000`.
+
+# Memetic Vault Specific
+memetic_vault.db
+memetic_vault.db-journal # SQLite temporary file
+uploads/

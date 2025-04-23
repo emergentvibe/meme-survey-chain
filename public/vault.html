@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memetic Vault - View & Contribute</title>
+    <title>Message in a Bottle - View & Contribute</title>
     <link rel="stylesheet" href="/style.css"> <!-- Use absolute path for CSS -->
 </head>
 <body>
     <div class="container">
-        <h1>Memetic Vault Lineage</h1>
-        <p id="vault-loading-status" class="status-message">Loading vault...</p>
+        <h1>Message in a Bottle</h1>
+        <p id="vault-loading-status" class="status-message">Loading bottle...</p>
 
         <hr>
 
-        <h2>Add Your Contribution</h2>
-        <p>Upload your image and thoughts to continue this lineage.</p>
+        <!-- ## CONTRIBUTION FORM (Moved to Top) ## -->
+        <h2>Add Your Message</h2>
+        <div id="image-prompt-display" style="margin-bottom: 15px; padding: 10px; background-color: #eef; border-left: 4px solid #58B09C;">
+            <strong>Image Prompt:</strong> <span id="prompt-text">Loading...</span>
+        </div>
+        <p>Add your image and answers to continue this bottle's journey.</p>
         <form id="contribution-form" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="image">Upload Your Image:</label>
@@ -37,7 +41,7 @@
 
         <hr style="margin-top: 40px;">
 
-        <h2>Lineage History</h2>
+        <h2>Bottle History</h2>
         <div id="lineage-display">
             <!-- Contributions will be dynamically loaded here -->
         </div>

@@ -9,6 +9,7 @@ lerna-debug.log*
 
 .cursor
 dev-plan.md 
+ux-improvement-plan.md
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json

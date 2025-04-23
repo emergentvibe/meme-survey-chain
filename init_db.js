@@ -23,6 +23,7 @@ function initializeDatabase() {
           share_token TEXT UNIQUE NOT NULL,
           parent_contribution_id INTEGER,
           lineage_root_id INTEGER,
+          image_prompt TEXT,
           image_filename TEXT UNIQUE NOT NULL,
           image_description TEXT,
           survey_question_1 TEXT,

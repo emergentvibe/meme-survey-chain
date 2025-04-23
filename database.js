@@ -44,6 +44,7 @@ async function addContribution(data) {
     const insertSql = `INSERT INTO Contributions (
         share_token,
         parent_contribution_id,
+        image_prompt,
         image_filename,
         image_description,
         survey_question_1,
@@ -53,11 +54,12 @@ async function addContribution(data) {
         survey_answer_2,
         survey_answer_3,
         contributor_user_agent
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`; // 11 placeholders
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`; // 12 placeholders
 
     const insertParams = [
         data.share_token,
         data.parent_contribution_id,
+        data.image_prompt,
         data.image_filename,
         data.image_description,
         data.survey_question_1, // May be NULL for non-root
@@ -67,7 +69,7 @@ async function addContribution(data) {
         data.survey_answer_2,
         data.survey_answer_3,
         data.contributor_user_agent
-    ]; // 11 parameters
+    ]; // 12 parameters
 
     console.log('[DB DEBUG] Attempting Step 1 INSERT with SQL:', insertSql);
     console.log('[DB DEBUG] Attempting Step 1 INSERT with PARAMS:', insertParams);
@@ -159,6 +161,8 @@ async function getLineage(startToken) {
         // Now fetch the root contribution details to get the questions
         const rootId = lineage[0].lineage_root_id; // Root ID is stored on all contributions
         let rootQuestions = { q1: null, q2: null, q3: null };
+        let imagePrompt = null; // Variable for image prompt
+
         if (rootId) { // Should always exist if lineage exists
             const rootContribution = await findContributionById(rootId);
             if (rootContribution) {
@@ -167,13 +171,18 @@ async function getLineage(startToken) {
                     q2: rootContribution.survey_question_2,
                     q3: rootContribution.survey_question_3
                 };
+                imagePrompt = rootContribution.image_prompt; // Get image prompt from root
             } else {
                 console.error(`Data integrity issue: Root contribution ${rootId} not found.`);
             }
         }
 
-        // Return both the lineage array and the root questions
-        return { contributions: lineage, root_questions: rootQuestions }; 
+        // Return lineage, root questions, and image prompt
+        return { 
+            contributions: lineage, 
+            root_questions: rootQuestions, 
+            image_prompt: imagePrompt // Add image prompt to result
+        }; 
 
     } catch (error) {
         console.error("Error getting lineage:", error);

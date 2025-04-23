@@ -66,7 +66,8 @@ app.post('/api/contribute', upload.single('image'), async (req, res) => {
             parent_share_token, 
             // Extract new survey fields
             surveyQuestion1, surveyQuestion2, surveyQuestion3,
-            surveyAnswer1, surveyAnswer2, surveyAnswer3 
+            surveyAnswer1, surveyAnswer2, surveyAnswer3,
+            imagePrompt // Extract image prompt
         } = req.body;
 
         // --- Validation ---
@@ -104,6 +105,7 @@ app.post('/api/contribute', upload.single('image'), async (req, res) => {
             share_token: newShareToken,
             parent_contribution_id: parentContributionId,
             lineage_root_id: lineageRootId, // Pass the determined lineage root ID (can be null for new roots)
+            image_prompt: imagePrompt || null, // Add image prompt (null if not provided/not root)
             image_filename: req.file.filename,
             image_description: description || '',
             // Pass survey questions (will be undefined/null if not a root submission)
@@ -180,8 +182,9 @@ app.get('/api/vault/:share_token', async (req, res) => {
             };
         });
 
-        // We have the lineage and root questions, send them back
+        // We have the lineage, root questions, and image prompt; send them back
         res.status(200).json({
+            image_prompt: result.image_prompt, // Add the image prompt
             root_questions: result.root_questions, // Already in { q1, q2, q3 } format
             contributions: formattedContributions
         });

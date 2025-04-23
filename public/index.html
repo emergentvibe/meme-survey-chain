@@ -3,33 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memetic Vault - Start or Continue</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Message in a Bottle - Start or Continue</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to the Memetic Vault</h1>
+        <h1>Message in a Bottle</h1>
 
-        <p>This is an experiment in tracking how ideas and images spread through direct sharing.</p>
+        <p>Create a digital message in a bottle, fill it with a meaningful image and your thoughts, and send it out on a journey across the internet! See how far it travels and what unique stories and cultural snapshots it collects along the way.</p>
 
-        <h2>How it works:</h2>
-        <ul>
-            <li>A "vault" starts with a single image and grows as people add their own.</li>
-            <li>Each contribution creates a unique link that can be shared with the next person.</li>
-            <li>We trace the lineage of contributions to see how the vault evolves and travels.</li>
-        </ul>
+        <h2>How it Works: The Voyage</h2>
+        <div id="how-it-works-steps">
+            <div class="step-item">
+                <div class="step-icon-placeholder"></div>
+                <div class="step-content">
+                    <h4>Step 1: Launch Your Bottle</h4>
+                    <p>Start by choosing an image that resonates with you. Set a creative prompt for future contributors and add a few survey questions to guide the bottle's theme. Answer your own questions first!</p>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-icon-placeholder"></div>
+                <div class="step-content">
+                    <h4>Step 2: Share the Link</h4>
+                    <p>Once created, you'll get a unique secret link – like the map coordinates for your bottle. Share this link directly with a friend you trust to continue the journey.</p>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-icon-placeholder"></div>
+                <div class="step-content">
+                    <h4>Step 3: Add to the Story & Pass It On</h4>
+                    <p>Your friend uses the link, sees the bottle's history (including your contribution!), adds their own image based on your prompt, and answers the survey questions. They then receive a *new* unique link to pass along to someone else.</p>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-icon-placeholder"></div>
+                <div class="step-content">
+                    <h4>Step 4: Watch it Drift</h4>
+                    <p>The bottle continues to travel from person to person, gathering images, answers, and moments. Each one becomes a unique time capsule, a snapshot of the connections and cultures it passes through.</p>
+                </div>
+            </div>
+             <div class="step-item">
+                 <div class="step-icon-placeholder"></div>
+                 <div class="step-content">
+                    <h4>A Digital Artifact</h4>
+                    <p>Each completed journey is a collaborative piece of art, a miniature cultural survey, and a testament to shared human experience across digital shores.</p>
+                 </div>
+            </div>
+        </div>
 
         <hr>
 
         <div class="options-container">
             <div class="option-section">
-                <h2>Option 1: Start a New Lineage</h2>
-                <p>Click the button below to create a new vault by uploading the first image and setting the survey questions.</p>
-                <button id="show-start-form-button" class="button-primary">Start a New Vault Lineage</button>
+                <h2>Option 1: Start a New Bottle</h2>
+                <p>Click the button below to create a new bottle by uploading the first image and setting the survey questions.</p>
+                <button id="show-start-form-button" class="button-primary">Start a New Message in a Bottle</button>
 
                 <div id="start-form-container" style="display: none; margin-top: 20px; padding: 15px; border: 1px solid #eee; background-color: #fdfdfd;">
                     <form id="new-lineage-form" enctype="multipart/form-data">
-                        <h4>New Vault Details:</h4>
+                        <h4>New Bottle Details:</h4>
                         <div class="form-group">
                             <label for="image">Upload Your First Image:</label>
                             <input type="file" id="image" name="image" accept="image/*" required>
@@ -37,6 +69,10 @@
                         <div class="form-group">
                             <label for="description">Image Description (Optional):</label>
                             <textarea id="description" name="description" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="imagePrompt">Image Prompt:</label>
+                            <input type="text" id="imagePrompt" name="imagePrompt" placeholder="e.g., 'A photo that makes you feel calm'" required>
                         </div>
 
                         <h5>Set Survey Questions & Your Answers:</h5>
@@ -65,15 +101,15 @@
                             <input type="text" id="surveyAnswer3" name="surveyAnswer3">
                         </div>
 
-                        <button type="submit">Create & View Vault Panel</button>
+                        <button type="submit">Create Bottle & View Panel</button>
                         <p id="new-lineage-status" class="status-message"></p>
                     </form>
                 </div>
             </div>
 
             <div class="option-section" style="margin-top: 30px;">
-                <h2>Option 2: Add to an Existing Lineage</h2>
-                <p>If someone shared a Memetic Vault link with you (e.g., <code>.../vault/some_unique_code</code>), simply click or paste that link into your browser to view the vault and add your contribution.</p>
+                <h2>Option 2: Add to an Existing Bottle</h2>
+                <p>If someone shared a Message in a Bottle link with you (e.g., <code>.../vault/some_unique_code</code>), simply click or paste that link into your browser to view the bottle and add your contribution.</p>
             </div>
         </div>
 
